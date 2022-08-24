@@ -19,17 +19,14 @@ import java.lang.reflect.Method;
 public class LogInterceptor implements HandlerInterceptor {
 
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler){
         HandlerMethod handlerMethod = (HandlerMethod)handler;
         Log methodAnnotation = handlerMethod.getMethodAnnotation(Log.class);
-        if(methodAnnotation!=null){
-            return true;
-        }
-        return false;
+        return methodAnnotation!=null;
     }
 
     @Override
-    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView){
         HandlerMethod handlerMethod = (HandlerMethod)handler;
         Log methodAnnotation = handlerMethod.getMethodAnnotation(Log.class);
         if(methodAnnotation!=null){
